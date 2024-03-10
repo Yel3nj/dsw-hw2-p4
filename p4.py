@@ -70,22 +70,27 @@ combined_df = combined_df[(combined_df['Year'] >= 1995) & (combined_df['Year'] <
 st.header('Yearly Average Temperature vs. Average Sea Level (GIA applied) from 1995 to 2020')
 
 # Define the figure size
+st.header('Yearly Average Temperature vs. Average Sea Level (GIA applied) from 1995 to 2020')
+
 fig, ax1 = plt.subplots(figsize=(14, 6))  # Increase figure width for better readability
+
+years = combined_df['Year'].values
+temp = combined_df['Ftemp'].values
+sea_level = combined_df['GMSL_GIA'].values
 
 color = 'tab:red'
 ax1.set_xlabel('Year')
 ax1.set_ylabel('Avg Temperature (°F)', color=color)
-ax1.plot(combined_df['Year'], combined_df['Ftemp'], color=color)
+ax1.plot(years, temp, color=color)
 ax1.tick_params(axis='y', labelcolor=color)
 
-ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
+ax2 = ax1.twinx()
 color = 'tab:blue'
-# Use 'Change in Sea Level' if you are showing change over time
 ax2.set_ylabel('Average Sea Level Change (mm)', color=color)
-ax2.plot(combined_df['Year'], combined_df['GMSL_GIA'], color=color)
+ax2.plot(years, sea_level, color=color)
 ax2.tick_params(axis='y', labelcolor=color)
 
-fig.tight_layout()  # otherwise the right y-label is slightly clipped
+fig.tight_layout()
 plt.title('Yearly Average Temperature vs. Average Sea Level Change (GIA applied) from 1995 to 2020')
 st.pyplot(fig)
 
