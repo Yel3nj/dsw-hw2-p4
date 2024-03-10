@@ -14,7 +14,7 @@ def load_data():
     df['Ftemp'] = kelvin_to_fahrenheit(df['Ktemp'])
     return df
 
-df = load_data()
+df = load_data().copy()
 
 # Part A: Monthly Average Temperature Visualization
 st.title('Monthly Average Temperature Visualization')
@@ -28,7 +28,9 @@ monthly_avg_temp = df_year.groupby(df_year['time'].dt.month)['Ftemp'].mean().res
 
 # Plot
 fig, ax = plt.subplots()
-ax.plot(monthly_avg_temp['time'].values, monthly_avg_temp['Ftemp'].values, marker='o', linestyle='-')
+ax.plot(monthly_avg_temp.index, monthly_avg_temp['Ftemp'], marker='o', linestyle='-')
+ax.set_xticks(range(1, 13))  # This ensures that all months are represented
+ax.set_xticklabels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
 ax.set_xlabel('Month')
 ax.set_ylabel('Average Temperature (°F)')
 ax.set_title(f'Average Monthly Temperature for {selected_year}')
@@ -54,7 +56,7 @@ def load_sea_level_data():
     yearly_sea_level = sea_level_df.groupby('Year')['GMSL_GIA'].mean().reset_index()  # Use the correct sea level column
     return yearly_sea_level
 
-yearly_sea_level = load_sea_level_data()
+yearly_sea_level = load_sea_level_data().copy()
 
 # Ensure the temperature data has a year column to merge on
 df['Year'] = df['time'].dt.year
