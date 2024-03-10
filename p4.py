@@ -70,8 +70,6 @@ combined_df = combined_df[(combined_df['Year'] >= 1995) & (combined_df['Year'] <
 st.header('Yearly Average Temperature vs. Average Sea Level (GIA applied) from 1995 to 2020')
 
 # Define the figure size
-st.header('Yearly Average Temperature vs. Average Sea Level (GIA applied) from 1995 to 2020')
-
 fig, ax1 = plt.subplots(figsize=(14, 6))  # Increase figure width for better readability
 
 years = combined_df['Year'].values
