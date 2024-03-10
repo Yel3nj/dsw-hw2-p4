@@ -28,7 +28,7 @@ monthly_avg_temp = df_year.groupby(df_year['time'].dt.month)['Ftemp'].mean().res
 
 # Plot
 fig, ax = plt.subplots()
-ax.plot(monthly_avg_temp['time'], monthly_avg_temp['Ftemp'], marker='o', linestyle='-')
+ax.plot(monthly_avg_temp['time'].values, monthly_avg_temp['Ftemp'].values, marker='o', linestyle='-')
 ax.set_xlabel('Month')
 ax.set_ylabel('Average Temperature (°F)')
 ax.set_title(f'Average Monthly Temperature for {selected_year}')
