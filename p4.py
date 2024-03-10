@@ -7,7 +7,7 @@ def kelvin_to_fahrenheit(K):
     return (K - 273.15) * 9/5 + 32
 
 # Load the dataset
-@st.cache_data
+@st.cache
 def load_data():
     df = pd.read_csv('./weather - 286_40.75_t2m_1d.csv')
     df['time'] = pd.to_datetime(df['time'])
@@ -46,7 +46,7 @@ st.write(f'The first year when the average temperature exceeded 55°F at Cornell
 # Part C: Creative Visualization
 
 # Load the sea level data
-@st.cache_data
+@st.cache
 def load_sea_level_data():
     sea_level_df = pd.read_csv('sealevel.csv')
     # Assume 'GMSL_GIA' is the column with GIA applied sea level variation
